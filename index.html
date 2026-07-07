@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.sng {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.def {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Aves da Casa Jackson Erickson</title>
+
+  <style>
+  
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3efe3;
+      color: #263b2a;
+    }
+
+    header {
+      background:
+        linear-gradient(rgba(20, 60, 35, 0.78), rgba(20, 60, 35, 0.78)),
+        url("fotos/capa-mata.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    header h1 {
+      font-size: 2.7rem;
+      margin: 0;
+    }
+
+    header p {
+      max-width: 760px;
+      margin: 15px auto 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .info {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .contador {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #busca {
+      width: 90%;
+      max-width: 520px;
+      padding: 14px;
+      border-radius: 30px;
+      border: 1px solid #bbb;
+      font-size: 1rem;
+      text-align: center;
+      outline: none;
+    }
+
+    #busca:focus {
+      border-color: #2f5d3a;
+      box-shadow: 0 0 0 3px rgba(47, 93, 58, 0.2);
+    }
+
+    .album {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 25px 50px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    .card-content {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .card h2 {
+      font-size: 1.12rem;
+      margin: 0 0 6px;
+      color: #254225;
+    }
+
+    .cientifico {
+      font-style: italic;
+      color: #666;
+      margin: 0 0 10px;
+    }
+
+    .local {
+      font-size: 0.9rem;
+      color: #3f5f3f;
+      margin: 0 0 12px;
+      line-height: 1.4;
+    }
+
+    .wiki {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: #2f5d3a;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .wiki:hover {
+      background: #437d4d;
+    }
+
+    footer {
+      background: #254225;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9rem;
+    }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: zoom-out;
+      padding: 20px;
+    }
+
+    #lightbox img {
+      max-width: 94%;
+      max-height: 94%;
+      border-radius: 12px;
+      box-shadow: 0 0 40px black;
+    }
+
+    .fechar {
+      position: fixed;
+      top: 18px;
+      right: 25px;
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 60px 18px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .album {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        padding: 0 15px 40px;
+      }
+
+      .card img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Guia de Aves da Casa Jackson Erickson</h1>
+    <h2>Diogo Silva & Marilia Erickson</h2>
+    <p style="text-align:left; display:inline-block;">
+        <span style="background-color:#90CAF9; padding:2px 6px; border-radius:4px;"><b>Muito comum</b></span>
+        – Sempre presente
+        <br>
+
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        – observado com frequência, geralmente em horários específicos.
+        <br>
+
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        – registrado ocasionalmente, exigindo algum tempo de observação.
+        <br>
+
+        <span style="background-color:#EF9A9A; padding:2px 6px; border-radius:4px;"><b>Rara</b></span>
+        – avistada apenas com sorte.
+    </p>
+</header>
+    </p>
+  </header>
+
+  <section class="info">
+    <div class="contador">
+      Espécies registradas: <span id="total-especies">0</span>
+    </div>
+
+    <input
+      type="text"
+      id="busca"
+      placeholder="Buscar ave pelo nome popular ou científico..."
+      onkeyup="buscarAve()"
+    />
+  </section>
+
+  <main class="album" id="album">
+
+    <div class="card">
+      <img src="fotos/anu-branco.jpg" alt="Anu-branco" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Anu-branco</h2>
+        <p class="cientifico">Guira guira</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/anu-branco" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/beija_flor_cauda_de_tesoura.jpg" alt="Beija-flor-cauda-de-tesoura" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Beija-flor-cauda-de-tesoura</h2>
+        <p class="cientifico">Eupetomena macroura</p>
+        <span style="background-color:#90CAF9; padding:2px 6px; border-radius:4px;"><b>Muito comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/beija-flor-tesoura" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/beija-flor-de-barriga-branca.jpg" alt="Beija-flor-de-barriga-branca" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Beija-flor-de-barriga-branca</h2>
+        <p class="cientifico">Chionomesa lactea</p>
+        <span style="background-color:#90CAF9; padding:2px 6px; border-radius:4px;"><b>Muito comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/beija-flor-de-barriga-branca" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/beija-flor-de-garganta-verde.jpg" alt="Beija-flor-de-garganta-verde" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Beija-flor-de-garganta-verde</h2>
+        <p class="cientifico">Chionomesa fimbriata</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/beija-flor-de-garganta-verde" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/beija-flor-de-rabo-branco-acanelado.jpg" alt="Beija-flor-de-rabo-branco-acanelado" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Beija-flor-de-rabo-branco-acanelado</h2>
+        <p class="cientifico">Phaethornis pretrei</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/rabo-branco-acanelado" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/bem-te-vi.jpg" alt="Bem-te-vi" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Bem-te-vi</h2>
+        <p class="cientifico">Pitangus sulphuratus</p>
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/bem-te-vi" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/bentivizinho-de-penacho-vermelho.jpg" alt="Bentivizinho-de-penacho-vermelho" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Bentivizinho-de-penacho-vermelho</h2>
+        <p class="cientifico">Myiozetetes similis</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/bentivizinho-de-penacho-vermelho" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/bico-de-lacre.jpg" alt="Bico-de-lacre" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Bico-de-lacre</h2>
+        <p class="cientifico">Estrilda astrild</p>
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/bico-de-lacre" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/corruira.jpg" alt="Corruíra" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Corruíra</h2>
+        <p class="cientifico">Troglodytes musculus</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/corruira" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/galo-de-campina.jpg" alt="Galo-de-campina" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Galo-de-campina</h2>
+        <p class="cientifico">Paroaria dominicana</p>
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/galo-de-campina" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/gaviao-carijo.jpg" alt="Gavião-carijó" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Gavião-carijó</h2>
+        <p class="cientifico"> Rupornis magnirostris</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/gaviao-carijo" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+    
+    <div class="card">
+      <img src="fotos/lavadeira.jpg" alt="Lavadeira" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Lavadeira</h2>
+        <p class="cientifico">Fluvicola nengeta</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/lavadeira-mascarada" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/maria-cavaleira.jpg" alt="Maria-cavaleira" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>maria-cavaleira-de-rabo-enferrujado</h2>
+        <p class="cientifico">Myiarchus tyrannulus</p>
+        <span style="background-color:#EF9A9A; padding:2px 6px; border-radius:4px;"><b>Rara</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/maria-cavaleira-de-rabo-enferrujado" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/pardal.jpg" alt="Pardal" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Pardal</h2>
+        <p class="cientifico">Passer domesticus</p>
+        <span style="background-color:#90CAF9; padding:2px 6px; border-radius:4px;"><b>Muito comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/pardal" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/rolinha-branca.jpg" alt="Rolinha-branca" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Rolinha-branca</h2>
+        <p class="cientifico">Columbina picui</p>
+        <span style="background-color:#90CAF9; padding:2px 6px; border-radius:4px;"><b>Muito comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/rolinha-branca" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/rolinha-roxa.jpg" alt="Rolinha-roxa" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Rolinha-roxa</h2>
+        <p class="cientifico">Columbina talpacoti</p>
+        <span style="background-color:#90CAF9; padding:2px 6px; border-radius:4px;"><b>Muito comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/rolinha-roxa" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/saira-amarela.jpg" alt="Saíra-amarela" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Saíra-amarela</h2>
+        <p class="cientifico">Stilpnia cayana</p>
+        <span style="background-color:#EF9A9A; padding:2px 6px; border-radius:4px;"><b>Rara</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/saira-amarela" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/sabia-do-campo.jpg" alt="Sabiá-do-campo" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Sabiá-do-campo</h2>
+        <p class="cientifico">Mimus saturninus</p>
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/sabia-do-campo" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/sanhacu-cinzento.jpg" alt="Sanhaçu-cinzento" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Sanhaçu-cinzento</h2>
+        <p class="cientifico">Thraupis sayaca</p>
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/sanhacu-cinzento" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/sanhacu-do-coqueiro.jpg" alt="Sanhaçu-do-coqueiro" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Sanhaçu-do-coqueiro</h2>
+        <p class="cientifico">Thraupis palmarum</p>
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/sanhacu-do-coqueiro" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/sibite.jpg" alt="Sibite" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Sibite</h2>
+        <p class="cientifico">Coereba flaveola</p>
+        <span style="background-color:#A5D6A7; padding:2px 6px; border-radius:4px;"><b>Comum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/sibite" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="fotos/suiriri.jpg" alt="Suiriri" onclick="abrirImagem(this.src, this.alt)">
+      <div class="card-content">
+        <h2>Suiriri</h2>
+        <p class="cientifico">Tyrannus melancholicus</p>
+        <span style="background-color:#FFF59D; padding:2px 6px; border-radius:4px;"><b>Incomum</b></span>
+        <br>
+        <a class="wiki" href="https://www.wikiaves.com.br/wiki/suiriri" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+    
+  </main>
+
+  <div id="lightbox" onclick="fecharImagem()">
+    <span class="fechar">&times;</span>
+    <img id="imagemExpandida" src="" alt="Imagem ampliada" />
+  </div>
+
+  <footer>
+    Fotografias: © 2026 Diogo J. A. Silva. Todos os direitos reservados. A reprodução ou utilização das imagens, total ou parcial, em qualquer meio, depende de autorização prévia e expressa do autor.
+    
+    Contato: diogojackson@hotmail.com
+    
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const total = document.querySelectorAll(".card").length;
+      document.getElementById("total-especies").textContent = total;
+    });
+
+    function buscarAve() {
+      const termo = document.getElementById("busca").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach(function (card) {
+        const texto = card.innerText.toLowerCase();
+
+        if (texto.includes(termo)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    function abrirImagem(src, alt) {
+      const lightbox = document.getElementById("lightbox");
+      const imagem = document.getElementById("imagemExpandida");
+
+      imagem.src = src;
+      imagem.alt = alt;
+      lightbox.style.display = "flex";
+    }
+
+    function fecharImagem() {
+      const lightbox = document.getElementById("lightbox");
+      const imagem = document.getElementById("imagemExpandida");
+
+      lightbox.style.display = "none";
+      imagem.src = "";
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        fecharImagem();
+      }
+    });
+  </script>
+
+</body>
+</html>
